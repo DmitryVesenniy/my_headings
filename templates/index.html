@@ -8,10 +8,13 @@
 <body>
     <main>
         <aside>
+            <h1>Ваш IP: <strong>{{.IP}}</strong></h1>
+        </aside>
+        <aside>
             <h1>Ваши HTTP заголовки</h1>
             <div>
                 <ul>
-                    {{range .}}
+                    {{range .Headers}}
                         <li>
                             <strong>{{.Header}}</strong>: {{.Value}}
                         </li>
