@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ваши HTTP заголовки</title>
+</head>
+
+<body>
+    <main>
+        <aside>
+            <h1>Ваши HTTP заголовки</h1>
+            <div>
+                <ul>
+                    {{range .}}
+                        <li>
+                            <strong>{{.Header}}</strong>: {{.Value}}
+                        </li>
+                    {{end}}
+                </ul>
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>
