@@ -12,6 +12,10 @@ import (
 	"my_headings/internal/database"
 )
 
+const (
+	DEFAULT_PORT = 8080
+)
+
 type Server struct {
 	port int
 
@@ -20,6 +24,9 @@ type Server struct {
 
 func NewServer() *http.Server {
 	port, _ := strconv.Atoi(os.Getenv("PORT"))
+	if port == 0 {
+		port = DEFAULT_PORT
+	}
 	NewServer := &Server{
 		port: port,
 
