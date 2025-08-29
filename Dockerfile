@@ -20,6 +20,7 @@ FROM alpine
 RUN apk update --no-cache && apk add --no-cache ca-certificates
 
 WORKDIR /app
+COPY . .
 
 COPY --from=builder /app/server /app/server
 
