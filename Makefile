@@ -12,8 +12,13 @@ build:
 # Run the application
 run:
 	@go run cmd/api/main.go
-# Create DB container
+	
 docker-run:
+	docker build -f Dockerfile -t my_headings .
+	docker run -d -p 8080:8080 --name my_headings my_headings
+
+# Create DB container
+docker-compose-run:
 	@if docker compose up --build 2>/dev/null; then \
 		: ; \
 	else \
@@ -22,7 +27,7 @@ docker-run:
 	fi
 
 # Shutdown DB container
-docker-down:
+docker-compose-down:
 	@if docker compose down 2>/dev/null; then \
 		: ; \
 	else \
