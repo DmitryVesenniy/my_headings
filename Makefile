@@ -12,10 +12,10 @@ build:
 # Run the application
 run:
 	@go run cmd/api/main.go
-	
+
 docker-run:
 	docker build -f Dockerfile -t my_headings .
-	docker run -d -p 8080:8080 --name my_headings my_headings
+	docker run -d -p 80:8080 --name my_headings my_headings
 
 # Create DB container
 docker-compose-run:

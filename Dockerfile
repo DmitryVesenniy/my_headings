@@ -1,8 +1,7 @@
 # BUILDER
 FROM golang:alpine AS builder
 LABEL stage=gobuilder
-ENV CGO_ENABLED 0
-ENV GOOS linux
+
 RUN apk update --no-cache && apk add --no-cache tzdata
 
 WORKDIR /app
@@ -14,7 +13,7 @@ COPY . .
 
 ENV CGO_ENABLED=0  
 
-RUN go build -ldflags="-s -w" -o app ./cmd/api
+RUN go build -ldflags="-s -w" -o server ./cmd/api
 
 # PUBLICATION
 FROM alpine
@@ -22,6 +21,6 @@ RUN apk update --no-cache && apk add --no-cache ca-certificates
 
 WORKDIR /app
 
-COPY --from=builder /app/app /app/app
+COPY --from=builder /app/server /app/server
 
-ENTRYPOINT ["./app/app"]
+ENTRYPOINT ["/app/server"]
